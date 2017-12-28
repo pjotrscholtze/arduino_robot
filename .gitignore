@@ -113,3 +113,7 @@ fabric.properties
 # Sonarlint plugin
 
 # End of https://www.gitignore.io/api/pycharm,intellij,platformio
+**.DS_Store
+robot/.travis.yml
+arduino_sender/.travis.yml
+
