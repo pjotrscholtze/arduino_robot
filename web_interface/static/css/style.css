@@ -1,0 +1,22 @@
+body {
+    margin-top: 1.5em;
+}
+
+main {
+    background: #f7f7f7;
+    padding: 1.5em;
+}
+
+.navbar-space{
+    padding: 0 0.5em 0 1.5em;
+}
+
+form.form-inline.my-2.my-lg-0 {
+    margin: 0 auto;
+}
+
+.duration {
+    width: 5em !important;
+}
+
+.,

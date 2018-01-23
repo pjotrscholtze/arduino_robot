@@ -1,0 +1,69 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Robot</title>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/bootstrap.min.css') }}"
+          integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb"
+          crossorigin="anonymous">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Robot control</h1>
+        <span style="text-align:center;width: 100%;display: block;">
+            <img src="#" style="height:728px; width: 1024px" id="preview">
+        </span>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+
+            <form class="form-inline my-2 my-lg-0" method="post">
+                <div class="form-group">
+                    <label for="action" class="navbar-text">Action</label>
+                    <select class="form-control" id="action" name="action">
+                        <option selected disabled>-- Select action --</option>
+                        <option value="move">Move</option>
+                        <option value="sound">Make sound</option>
+                    </select>
+                </div>
+                <div class="form-group" id="sub-action-group" style="display: none">
+                    <label for="sub-action" class="navbar-text navbar-space">Sub action</label>
+                    <select class="form-control" id="sub-action" name="sub-action">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="sub-action" class="navbar-text navbar-space">Duration</label>
+                    <input class="form-control mr-sm-2 duration" type="text"
+                           value="2000" aria-label="Duration" name="duration">
+                    <div class="input-group-append">
+                        <span class="input-group-text navbar-text">ms</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button class="btn btn-outline-success my-2 my-sm-0"
+                            type="submit">Do it
+                    </button>
+                </div>
+            </form>
+        </nav>
+    </div>
+
+</main><!-- /.container -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
+        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+        integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"
+        integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ"
+        crossorigin="anonymous"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

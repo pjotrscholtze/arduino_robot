@@ -9,7 +9,8 @@ enum Direction {
 struct Movement {
   Direction directionEnum;
   char direction;
-  int duration;
+  int step;
 };
 
 void handle_movement(Movement *movement);
+void set_servo_pin(int pin);

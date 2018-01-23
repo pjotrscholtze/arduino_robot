@@ -2,19 +2,19 @@
 #include <VirtualWire.h>
 
 void setup() {
+  // start serial port at 9600 bps:
   Serial.begin(9600);
-  Serial.print("Begin setup");
   vw_set_tx_pin(2);
   // Initialise the IO and ISR
   vw_set_ptt_inverted(true); // Required for DR3100
   vw_setup(2000);	 // Bits per sec
-  Serial.print("Done setting up");
 }
 
 void loop() {
+  // if we get a valid byte, read analog ins:
   if (Serial.available() > 0) {
-    char raw = Serial.read();
-    vw_send(&raw, strlen(raw));
-    vw_wait_tx();
+    // send sensor values:
+    char t = Serial.read();
+    vw_send(&t, 1);
   }
 }
