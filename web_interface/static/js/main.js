@@ -30,16 +30,7 @@
 
 
     setInterval(function () {
-
-//      $.ajax({
-//        dataType: "json",
-//        url: '/image/' + Date.now(),
-//        success: function (data) {
-//            console.log(data);
-            $("#preview").attr("src", "/image?" + Date.now())
-//        }
-//      });
-
+        $("#preview").attr("src", "/image?" + Date.now())
     }, 400);
 
   })

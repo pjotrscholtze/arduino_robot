@@ -142,7 +142,7 @@ def route_image():
     image_64_encode = base64.b64encode(my_stream.getvalue())
 
     return "<img src=\"data:image/png;base64," + image_64_encode.decode(
-            "UTF-8") + "\"/>"
+            "UTF-8") + "\"/><style>*{margin:0;padding:0}</style>"
 
 
 app.run(host='0.0.0.0')
