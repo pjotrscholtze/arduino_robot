@@ -139,7 +139,7 @@ def route_image():
     my_stream = io.BytesIO()
     camera.capture(my_stream, 'jpeg', use_video_port=True)
 
-    return send_file(my_stream)
+    return send_file(my_stream, attachment_filename="preview.jpg")
 
 
 app.run(host='0.0.0.0')
