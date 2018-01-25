@@ -1,3 +1,4 @@
+import base64
 import enum
 import io
 from typing import List
@@ -138,8 +139,10 @@ def route_home():
 def route_image():
     my_stream = io.BytesIO()
     camera.capture(my_stream, 'jpeg', use_video_port=True)
+    image_64_encode = base64.b64encode(my_stream.getvalue())
 
-    return send_file(my_stream, attachment_filename="preview.jpg")
+    return "<img src=\"data:image/png;base64," + image_64_encode.decode(
+            "UTF-8") + "\"/>"
 
 
 app.run(host='0.0.0.0')
