@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include <VirtualWire.h>
 #include "listener.h"
-#include "movement.h"
+#include "display.h"
 
 #define  MOVEMENT_FRONT_MIN 16
 #define  MOVEMENT_FRONT_MAX 47
@@ -62,6 +62,8 @@ void callback(RemotePacketType* type, char data[], byte len) {
   }
 }
 
+int a = 0;
+
 void handle_state() {
   unsigned long step = endTime - millis();
   switch (systemState) {
@@ -70,6 +72,15 @@ void handle_state() {
       handle_movement(&movement);
     break;
     case SOUND_INFORMATION:
+    break;
+    case UNKOWN:
+      if (millis() % 300 == 0) {
+        Serial.println("unkown");
+        for (int i = 0; i< 8;i++){
+          maxSingle(i+1,  (a+i) % 2?0xFF:0x00);
+        }
+        a++;
+      }
     break;
   }
 
@@ -85,6 +96,12 @@ void setup() {
   set_servo_pin(6);
   remote_listening(2);
   remote_set_listener_registar(callback);
+  setup_display();
+  tone(8, 500, 300);
+  delay(300);
+  tone(8, 750, 300);
+  delay(300);
+  tone(8, 1000, 300);
 }
 
 void loop() {
