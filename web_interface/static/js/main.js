@@ -29,8 +29,8 @@
     });
 
 
-    function test(){
     setInterval(function () {
+
       $.ajax({
         dataType: "json",
         url: '/image/' + Date.now(),
@@ -41,8 +41,6 @@
       });
 
     }, 400);
-    }
 
-test();
   })
 })(jQuery);
