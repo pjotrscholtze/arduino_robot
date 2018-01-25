@@ -44,7 +44,7 @@ Direction get_direction(char direction) {
 
 void callback(RemotePacketType* type, char data[], byte len) {
   systemState = *type;
-  switch (systemState) {
+  switch (*type) {
     case MOVEMENT_INFORMATION:
     Serial.print("mov\n");
       // TYPE | DIRECTION 0...127 | DURATION 0..127 * 2^7  | DURATION 0...127 | FOOTER
@@ -62,30 +62,32 @@ void callback(RemotePacketType* type, char data[], byte len) {
   }
 }
 
-int a = 0;
-
+unsigned long t = 0;
 void handle_state() {
-  unsigned long step = endTime - millis();
-  switch (systemState) {
-    case MOVEMENT_INFORMATION:
-      movement.step = step;
-      handle_movement(&movement);
-    break;
-    case SOUND_INFORMATION:
-    break;
-    case UNKOWN:
-      if (millis() % 300 == 0) {
-        Serial.println("unkown");
-        for (int i = 0; i< 8;i++){
-          maxSingle(i+1,  (a+i) % 2?0xFF:0x00);
+  unsigned long currTime = millis();
+  if (currTime != t) {
+    unsigned long step = endTime - millis();
+    switch (systemState) {
+      case MOVEMENT_INFORMATION:
+        movement.step = step;
+        handle_movement(&movement);
+      break;
+      case SOUND_INFORMATION:
+      break;
+      case UNKOWN:
+        if (millis() % 300 == 0) {
+          // Serial.println("unkown");
+          for (char i = 0; i< 8;i++){
+            maxSingle(i+1,  (step/300) % 2?0xFF:0x00);
+          }
+          // a++;
         }
-        a++;
-      }
-    break;
-  }
+      break;
+    }
 
-  if (endTime < millis()) {
-      systemState = UNKOWN;
+    if (endTime < millis()) {
+        systemState = UNKOWN;
+    }
   }
 }
 

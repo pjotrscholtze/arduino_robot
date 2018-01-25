@@ -4,7 +4,7 @@ from typing import List
 from flask import Flask, request, render_template, send_file
 import serial
 
-ser = serial.Serial('/dev/ttyUSB1')  # open serial port
+ser = serial.Serial('/dev/ttyUSB0')  # open serial port
 app = Flask(__name__)  # create the application instance :)
 
 try:
@@ -13,7 +13,7 @@ try:
     global camera
     camera = picamera.PiCamera()
     camera.resolution = (1024, 768)
-    camera.start_preview()
+    # camera.start_preview()
 
 except:
     pass
@@ -136,11 +136,10 @@ def route_home():
 
 @app.route('/image')
 def route_image():
-    return ""
-    # my_stream = io.BytesIO()
-    # camera.capture(my_stream, 'jpeg', use_video_port=True)
-    #
-    # return send_file(my_stream)
+    my_stream = io.BytesIO()
+    camera.capture(my_stream, 'jpeg', use_video_port=True)
+
+    return send_file(my_stream)
 
 
 app.run(host='0.0.0.0')

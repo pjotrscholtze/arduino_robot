@@ -41,7 +41,8 @@ void remote_tick() {
 
   if (vw_get_message(buf, &buflen)) { // Non-blocking
     // Message with a good checksum received, dump it.
-    for (int i = 0; i < buflen; i++) {
+    for (char i = 0; i < buflen; i++) {
+      Serial.println(buf[i]);
       switch (buf[i]) {
         case FOOTER_BYTE:
           _remote_parse_packet(packetData, packetByteIndex);

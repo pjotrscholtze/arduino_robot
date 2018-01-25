@@ -1,10 +1,10 @@
 #include <Arduino.h>
 #include "movement.h"
 
-int DIN = 10;
-int CS = 12;
-int CLK = 11;
-int maxInUse = 1;    //change this variable to set how many MAX7219's you'll use
+char DIN = 10;
+char CS = 12;
+char CLK = 11;
+char maxInUse = 1;    //change this variable to set how many MAX7219's you'll use
                      // define max7219 registers
 char max7219_reg_decodeMode  = 0x09;
 char max7219_reg_intensity   = 0x0a;
@@ -53,7 +53,7 @@ void initMax7219()
   maxAll(max7219_reg_decodeMode, 0x00);  // using an led matrix (not digits)
   maxAll(max7219_reg_shutdown, 0x01);    // not in shutdown mode
   maxAll(max7219_reg_displayTest, 0x00); // no display test
-  for (int e = 1; e <= 8; e++) {    // empty registers, turn all LEDs off
+  for (char e = 1; e <= 8; e++) {    // empty registers, turn all LEDs off
     maxAll(e,0);
   }
   maxAll(max7219_reg_intensity, 0x0f & 0x0f);    // the first 0x0f is the value you can set
