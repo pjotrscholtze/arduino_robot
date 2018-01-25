@@ -31,7 +31,7 @@
 
     setInterval(function () {
         $("#preview").attr("src", "/image?" + Date.now())
-    }, 400);
+    }, 1000);
 
   })
 })(jQuery);
