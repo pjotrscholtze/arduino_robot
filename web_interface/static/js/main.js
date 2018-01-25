@@ -29,6 +29,7 @@
     });
 
 
+    function test(){
     setInterval(function () {
       $.ajax({
         dataType: "json",
@@ -37,9 +38,11 @@
             console.log(data);
 //            $("#preview").attr("src", "/image?" + Date.now())
         }
-        });
+      });
 
     }, 400);
+    }
 
+test();
   })
 })(jQuery);
